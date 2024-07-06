@@ -12,15 +12,16 @@ import {
 import { useQuery } from '@tanstack/react-query';
 import { getChartsDataAction } from '@/utils/actions';
 function ChartsContainer() {
-  const { data, isPending } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['charts'],
     queryFn: () => getChartsDataAction(),
   });
 
-  if (isPending) return <h2 className='text-xl font-medium'>Please wait...</h2>;
-  if (!data || data.length < 1) return null;
+  if (isLoading) return <h2 className='text-xl font-medium'>Please wait...</h2>;
+  if (!data || data.length < 1) return <h2 className='text-xl font-medium'>No data available</h2>;
   return (
     <section className='mt-16'>
+      
       <h1 className='text-4xl font-semibold text-center'>
         Monthly Applications
       </h1>
