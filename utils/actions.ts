@@ -203,9 +203,9 @@ export async function getChartsDataAction(): Promise<
   Array<{ date: string; count: number }>
 > {
   const userId = authenticateAndRedirect();
-  console.log(`Authenticated User ID: ${userId}`); // Punto 1: Verificar el userId
+  //console.log(`Authenticated User ID: ${userId}`); // Punto 1: Verificar el userId
   const sixMonthsAgo = dayjs().subtract(6, 'month').toDate();
-  console.log(`Six Months Ago: ${sixMonthsAgo}`); // Punto 2: Verificar la fecha de inicio
+  //console.log(`Six Months Ago: ${sixMonthsAgo}`); // Punto 2: Verificar la fecha de inicio
   try {
     const jobs = await prisma.job.findMany({
       where: {
@@ -218,10 +218,10 @@ export async function getChartsDataAction(): Promise<
         createdAt: 'asc',
       },
     });
-    console.log(`Jobs Found: ${jobs.length}`); // Punto 3: Verificar la cantidad de trabajos encontrados
+    //console.log(`Jobs Found: ${jobs.length}`); // Punto 3: Verificar la cantidad de trabajos encontrados
     let applicationsPerMonth = jobs.reduce((acc, job) => {
       const date = dayjs(job.createdAt).format('MMM YY');
-      console.log(`Processing Job Created At: ${job.createdAt}, Formatted: ${date}`); // Punto 4: Verificar el procesamiento de fechas
+      //console.log(`Processing Job Created At: ${job.createdAt}, Formatted: ${date}`); // Punto 4: Verificar el procesamiento de fechas
       const existingEntry = acc.find((entry) => entry.date === date);
 
       if (existingEntry) {
@@ -235,7 +235,7 @@ export async function getChartsDataAction(): Promise<
 
     return applicationsPerMonth;
   } catch (error) {
-    console.error(`Error in getChartsDataAction: ${error}`); // Punto 5: Manejo de errores
+    //console.error(`Error in getChartsDataAction: ${error}`); // Punto 5: Manejo de errores
     // Implementar redirección o manejo de errores adecuado...
     redirect('/jobs');
   }

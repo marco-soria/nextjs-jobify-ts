@@ -18,7 +18,8 @@ function ChartsContainer() {
   });
 
   if (isLoading) return <h2 className='text-xl font-medium'>Please wait...</h2>;
-  if (!data || data.length < 1) return <h2 className='text-xl font-medium'>No data available</h2>;
+  if (!data || data.length < 1) return null;
+  //if (!data || data.length < 1) return <h2 className='text-xl font-medium'>No data available</h2>;
   return (
     <section className='mt-16'>
       
